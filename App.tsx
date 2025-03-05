@@ -1,4 +1,4 @@
-import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert } from 'react-native';
+import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button } from 'react-native';
 import TitleComponent from './components/TitleComponent';
 import { useState } from 'react';
 
@@ -37,6 +37,9 @@ export default function App() {
         <Pressable onPress={() => alert("Hi!")}>
           <Text style={styles.btn}>Push Me</Text>
         </Pressable>
+        <Button
+          title='Hello'>
+        </Button>
       </SafeAreaView>
     </View >
   );
