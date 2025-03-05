@@ -34,6 +34,9 @@ export default function App() {
         <TextInput onChangeText={text => setLen(text.length)}></TextInput>
         <Text>Lenght: {len}</Text>
         <TitleComponent />
+        <Pressable onPress={() => alert("Hi!")}>
+          <Text style={styles.btn}>Push Me</Text>
+        </Pressable>
       </SafeAreaView>
     </View >
   );
@@ -52,5 +55,14 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: "auto"
+  },
+  btn: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 12,
+    backgroundColor: "darkblue",
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
   }
 });
