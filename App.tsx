@@ -1,4 +1,4 @@
-import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button } from 'react-native';
+import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView } from 'react-native';
 import TitleComponent from './components/TitleComponent';
 import { useState } from 'react';
 
@@ -8,7 +8,8 @@ const QUESTIONS = [
 export default function App() {
 
   // [name, setterName] = useState(initialValue)
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [len, setLen] = useState(0);
 
   const showAlert = () => {
@@ -38,10 +39,23 @@ export default function App() {
           <Text style={styles.btn}>Push Me</Text>
         </Pressable>
         <Button
-          title='Hello'>
+          title='Open Modal' onPress={() => { setModalVisible(true) }}>
         </Button>
       </SafeAreaView>
-    </View >
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}>
+        <SafeAreaView style={styles.modalContainer}>
+          <ScrollView>
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa consequuntur perferendis numquam asperiores consectetur ea cupiditate aliquid corporis, deserunt, placeat, sequi laborum nostrum voluptate odio quisquam. Dolore odio explicabo amet nam ad vero, quam rerum delectus pariatur illum aspernatur doloribus magni perferendis facere enim a illo iusto quas molestias iure? Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, nobis accusamus aliquid corrupti praesentium, quas eaque molestiae quam, consequuntur quod doloribus neque obcaecati ad nulla laboriosam doloremque perferendis fuga aut!</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)}></Button>
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
+    </View>
   );
 }
 
@@ -67,5 +81,16 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     textAlign: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 8,
+  },
+  text: {
+    fontSize: 28,
+    textAlign: 'center',
   }
 });
