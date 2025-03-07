@@ -2,6 +2,7 @@ import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'reac
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Product } from '../models/products';
+import ProductCard from './ProductCard';
 
 const api = "https://fakestoreapi.com/products";
 
@@ -21,12 +22,14 @@ const Lists = () => {
     return (
         <SafeAreaView>
             <View>
-                <Text>Products</Text>
+                <Text style={styles.title}>Products</Text>
                 <FlatList
                     data={products}
-                    renderItem={({ item }) => (
-                        <Text style={styles.text}>{item.title}</Text>
-                    )}
+                    renderItem={({ item }) => <ProductCard item={item} />}
+                // initialNumToRender={1}
+                // ItemSeparatorComponent={() => (
+                //     <View style={{ height: 10, borderRadius: 12, backgroundColor: 'black' }} />
+                // )}
                 />
             </View>
         </SafeAreaView>
@@ -36,7 +39,8 @@ const Lists = () => {
 export default Lists
 
 const styles = StyleSheet.create({
-    // text: {
-    //     fontSize: 28,
-    // }
+    title: {
+        textAlign: 'center',
+        fontSize: 24
+    }
 })
