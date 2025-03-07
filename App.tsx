@@ -1,6 +1,7 @@
 import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView } from 'react-native';
 import TitleComponent from './components/TitleComponent';
 import { useState } from 'react';
+import TestModal from './components/TestModal';
 
 const QUESTIONS = [
 ]
@@ -43,18 +44,7 @@ export default function App() {
         </Button>
       </SafeAreaView>
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}>
-        <SafeAreaView style={styles.modalContainer}>
-          <ScrollView>
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa consequuntur perferendis numquam asperiores consectetur ea cupiditate aliquid corporis, deserunt, placeat, sequi laborum nostrum voluptate odio quisquam. Dolore odio explicabo amet nam ad vero, quam rerum delectus pariatur illum aspernatur doloribus magni perferendis facere enim a illo iusto quas molestias iure? Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, nobis accusamus aliquid corrupti praesentium, quas eaque molestiae quam, consequuntur quod doloribus neque obcaecati ad nulla laboriosam doloremque perferendis fuga aut!</Text>
-            <Button title="Close" onPress={() => setModalVisible(false)}></Button>
-          </ScrollView>
-        </SafeAreaView>
-      </Modal>
+      <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
     </View>
   );
 }
@@ -82,15 +72,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-  modalContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 8,
-  },
-  text: {
-    fontSize: 28,
-    textAlign: 'center',
-  }
 });
