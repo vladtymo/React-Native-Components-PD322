@@ -24,28 +24,39 @@ export default function App() {
   }
 
   return (
-    <View style={{
-      ...styles.container,
-      backgroundColor: isDarkMode ? 'black' : 'white'
-    }}>
-      <SafeAreaView style={styles.safe}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <Pressable onPress={showAlert}>
-          <Image style={styles.image} source={require('./assets/icon.png')} />
-        </Pressable>
-        <TextInput onChangeText={text => setLen(text.length)}></TextInput>
-        <Text>Lenght: {len}</Text>
-        <TitleComponent />
-        <Pressable onPress={() => alert("Hi!")}>
-          <Text style={styles.btn}>Push Me</Text>
-        </Pressable>
-        <Button
-          title='Open Modal' onPress={() => { setModalVisible(true) }}>
-        </Button>
-      </SafeAreaView>
+   <View style={styles.container}>
+            <Text style={styles.text}>Create New Product</Text>
 
-      <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
-    </View>
+            <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput style={{ ...styles.input, ...styles.text }} />
+                )}
+            />
+            
+            <Controller
+                control={control}
+                name="lang"
+                render={({ field: { onChange, onBlur, value } }) => (
+                    <Picker
+                        selectedValue={selectedLanguage}
+                        onValueChange={setSelectedLanguage}>
+                        <Picker.Item label="Java" value="java" />
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="Python" value="py" />
+                        <Picker.Item label="Ruby" value="rb" />
+                        <Picker.Item label="Perl" value="pl" />
+                        <Picker.Item label="Kotlin" value="kot" />
+                        <Picker.Item label="PHP" value="php" />
+                    </Picker>
+                )}
+            />
+
+
+            <Switch />
+            <Button title='Submit' onPress={onSubmit}></Button>
+        </View>
   );
 }
 
