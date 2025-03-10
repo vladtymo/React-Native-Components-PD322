@@ -1,7 +1,8 @@
-import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView } from 'react-native';
+import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView, Dimensions } from 'react-native';
 import TitleComponent from './components/TitleComponent';
 import { useState } from 'react';
 import TestModal from './components/TestModal';
+import CreateProductForm from './components/CreateProductForm';
 
 const QUESTIONS = [
 ]
@@ -29,7 +30,7 @@ export default function App() {
       backgroundColor: isDarkMode ? 'black' : 'white'
     }}>
       <SafeAreaView style={styles.safe}>
-        <Text>Open up App.tsx to start working on your app!</Text>
+        {/* <Text>Open up App.tsx to start working on your app!</Text>
         <Pressable onPress={showAlert}>
           <Image style={styles.image} source={require('./assets/icon.png')} />
         </Pressable>
@@ -41,7 +42,11 @@ export default function App() {
         </Pressable>
         <Button
           title='Open Modal' onPress={() => { setModalVisible(true) }}>
+        </Button> */}
+        <Button
+          title='Open Form' onPress={() => { setModalVisible(true) }}>
         </Button>
+        <CreateProductForm />
       </SafeAreaView>
 
       <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
@@ -49,10 +54,13 @@ export default function App() {
   );
 }
 
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -67,9 +75,17 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 8,
     borderRadius: 12,
-    backgroundColor: "darkblue",
+    backgroundColor: width > 400 ? 'darkblue' : "gray",
     color: "white",
     fontSize: 16,
     textAlign: "center",
+    ...Platform.select({
+      android: {
+        color: "black"
+      },
+      ios: {
+        color: "white"
+      }
+    })
   },
 });

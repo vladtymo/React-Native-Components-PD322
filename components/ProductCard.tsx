@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import React from 'react'
 import { Product } from '../models/products'
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 16,
         margin: 16,
-        backgroundColor: '#fff',
+        backgroundColor: "white",
         borderRadius: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
