@@ -1,30 +1,32 @@
-import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView } from 'react-native';
-import TitleComponent from './components/TitleComponent';
-import { useState } from 'react';
-import TestModal from './components/TestModal';
+import { Alert, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
+import { Picker } from '@react-native-picker/picker'
+import { Controller, useForm } from 'react-hook-form';
 
-const QUESTIONS = [
-]
+export default function CreateProductForm() {
 
-export default function App() {
+    const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
-  // [name, setterName] = useState(initialValue)
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [len, setLen] = useState(0);
+    const {
+        control,
+        handleSubmit,
+        // formState: { errors },
+    } = useForm({
+        defaultValues: {
+            lang: "",
+            email: "",
+        },
+    })
 
-  const showAlert = () => {
-    Alert.alert('Hello World!', 'Do you want to change color?', [
-      {
-        text: 'No',
-        style: 'destructive',
-      },
-      { text: 'OK', onPress: () => setIsDarkMode(!isDarkMode) },
-    ]);
-  }
+    const onSubmit = () => {
+        Alert.alert(
+            "Data",
+            `Lang: ${selectedLanguage}`
+        )
+    }
 
-  return (
-   <View style={styles.container}>
+    return (
+        <View style={styles.container}>
             <Text style={styles.text}>Create New Product</Text>
 
             <Controller
@@ -34,7 +36,7 @@ export default function App() {
                     <TextInput style={{ ...styles.input, ...styles.text }} />
                 )}
             />
-            
+
             <Controller
                 control={control}
                 name="lang"
@@ -54,33 +56,29 @@ export default function App() {
             />
 
 
-            <Switch />
+            <Switch>
+
+            </Switch>
             <Button title='Submit' onPress={onSubmit}></Button>
         </View>
-  );
+    )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  safe: {
-    // marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-  },
-  image: {
-    height: 100,
-    width: "auto"
-  },
-  btn: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 12,
-    backgroundColor: "darkblue",
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-  },
-});
+    container: {
+        display: 'flex',
+        gap: 10
+    },
+    text: {
+        color: 'black',
+        fontSize: 18,
+        textAlign: 'center'
+    },
+    input: {
+        backgroundColor: "lightgray",
+        padding: 10,
+        minWidth: 200,
+        color: 'white',
+        fontSize: 18,
+    }
+})
