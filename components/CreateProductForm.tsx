@@ -4,7 +4,11 @@ import { Picker } from '@react-native-picker/picker'
 import { Controller, useForm } from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function CreateProductForm() {
+type Props = {
+    initialEmail: string
+}
+
+export default function CreateProductForm({ initialEmail }: Props) {
 
     // const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
@@ -15,12 +19,12 @@ export default function CreateProductForm() {
     } = useForm({
         defaultValues: {
             lang: "",
-            email: "",
+            email: initialEmail,
             accept: false
         },
     })
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: any) => {
         console.log(data);
         if (data.accept)
             Alert.alert(

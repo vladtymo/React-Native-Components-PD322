@@ -1,91 +1,30 @@
-import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView, Dimensions } from 'react-native';
-import TitleComponent from './components/TitleComponent';
-import { useState } from 'react';
-import TestModal from './components/TestModal';
-import CreateProductForm from './components/CreateProductForm';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './screens/Home';
+import Forms from './screens/Forms';
+import { RootStackParamList } from './screens/types';
+import About from './screens/About';
 
-const QUESTIONS = [
-]
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-
-  // [name, setterName] = useState(initialValue)
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [len, setLen] = useState(0);
-
-  const showAlert = () => {
-    Alert.alert('Hello World!', 'Do you want to change color?', [
-      {
-        text: 'No',
-        style: 'destructive',
-      },
-      { text: 'OK', onPress: () => setIsDarkMode(!isDarkMode) },
-    ]);
-  }
-
   return (
-    <View style={{
-      ...styles.container,
-      backgroundColor: isDarkMode ? 'black' : 'white'
-    }}>
-      <SafeAreaView style={styles.safe}>
-        {/* <Text>Open up App.tsx to start working on your app!</Text>
-        <Pressable onPress={showAlert}>
-          <Image style={styles.image} source={require('./assets/icon.png')} />
-        </Pressable>
-        <TextInput onChangeText={text => setLen(text.length)}></TextInput>
-        <Text>Lenght: {len}</Text>
-        <TitleComponent />
-        <Pressable onPress={() => alert("Hi!")}>
-          <Text style={styles.btn}>Push Me</Text>
-        </Pressable>
-        <Button
-          title='Open Modal' onPress={() => { setModalVisible(true) }}>
-        </Button> */}
-        <Button
-          title='Open Form' onPress={() => { setModalVisible(true) }}>
-        </Button>
-        <CreateProductForm />
-      </SafeAreaView>
-
-      <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+        />
+        <Stack.Screen
+          name="Forms"
+          component={Forms}
+          options={{ title: 'Create Product' }}
+        />
+        <Stack.Screen
+          name="About"
+          component={About}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  safe: {
-    // marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-  },
-  image: {
-    height: 100,
-    width: "auto"
-  },
-  btn: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 12,
-    backgroundColor: width > 400 ? 'darkblue' : "gray",
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-    ...Platform.select({
-      android: {
-        color: "black"
-      },
-      ios: {
-        color: "white"
-      }
-    })
-  },
-});
