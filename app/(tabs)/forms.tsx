@@ -1,10 +1,9 @@
 import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextInput, Pressable, Alert, Button, Modal, ScrollView, Dimensions } from 'react-native';
 import { useState } from 'react';
-import CreateProductForm from '../components/CreateProductForm';
-import TestModal from '../components/TestModal';
-import { FormsScreenProps } from './types';
+import CreateProductForm from '../../components/CreateProductForm';
+import TestModal from '../../components/TestModal';
 
-export default function Forms({ navigation, route }: FormsScreenProps) {
+export default function Forms() {
 
     // [name, setterName] = useState(initialValue)
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -43,14 +42,15 @@ export default function Forms({ navigation, route }: FormsScreenProps) {
                 <Button
                     title='Open Form' onPress={() => { setModalVisible(true) }}>
                 </Button>
-                <CreateProductForm initialEmail={route.params.initialEmail} />
+                {/* <CreateProductForm initialEmail={route.params.initialEmail} /> */}
             </SafeAreaView>
 
             <Button
                 title='About'
-                onPress={() =>
-                    navigation.navigate("About")
-                } />
+            // onPress={() =>
+            //      navigation.navigate("About")
+            // } 
+            />
 
             <TestModal visible={modalVisible} onClose={() => setModalVisible(false)} />
         </View>

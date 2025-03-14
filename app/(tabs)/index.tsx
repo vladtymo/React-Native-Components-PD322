@@ -1,16 +1,16 @@
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { HomeScreenProps } from './types'
 
-const Home = ({ navigation }: HomeScreenProps) => {
+const Home = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Home Screen</Text>
             <Button
                 title='Go to Forms'
-                onPress={() =>
-                    navigation.navigate("Forms", { initialEmail: "example@ukr.net" })
-                } />
+            // onPress={() => 
+            //     navigation.navigate("Forms", {initialEmail: "example@ukr.net" })
+            // } 
+            />
         </View>
     )
 }

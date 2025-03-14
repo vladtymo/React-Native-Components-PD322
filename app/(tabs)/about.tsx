@@ -1,16 +1,16 @@
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { AboutScreenProps, HomeScreenProps } from './types'
 
-const Home = ({ navigation }: AboutScreenProps) => {
+const Home = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>About Screen</Text>
             <Button
                 title='Go Back Home'
-                onPress={() =>
-                    navigation.popToTop()
-                } />
+            // onPress={() =>
+            //     navigation.popToTop()
+            // } 
+            />
         </View>
     )
 }
