@@ -1,63 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Button, StyleSheet, Text, View, TextInput, Alert } from 'react-native'
+import { FlatList, Button, StyleSheet, Text, View, TextInput } from 'react-native'
 // import { addItem, getItems, init } from '../../store/db';
-import { Item } from '../../models/item';
 
-import * as SQLite from 'expo-sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
-import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
-import migrations from '../../drizzle/migrations';
 import { usersTable } from '../../store/schema';
+import { useSQLiteContext } from 'expo-sqlite';
 
-const expo = SQLite.openDatabaseSync('items2.db');
-const db = drizzle(expo);
+import * as schema from '../../store/schema';
 
 const Home = () => {
-    const { success, error } = useMigrations(db, migrations);
-    const [items, setItems] = useState<typeof usersTable.$inferSelect[] | null>(null);
+    // const { success, error } = useMigrations(db, migrations);
+    const db = drizzle(useSQLiteContext(), { schema });
 
-    // const [items, setItems] = useState<string[]>([]);
+    const [items, setItems] = useState<schema.Task[] | null>(null);
     const [text, setText] = useState<string>('');
 
     useEffect(() => {
-        if (!success) return;
-
         loadItems();
-
-    }, [success]);
+    }, []);
 
     const loadItems = async () => {
         setItems(await db.select().from(usersTable));
-        console.log("loading...");
     }
 
     const addItemHandle = async () => {
-        // setItems([...items, text]);
-        // await addItem(text);
-
         await db.insert(usersTable).values({ name: text });
         loadItems();
-        console.log("added...");
     }
 
     const clearHandle = async () => {
         await db.delete(usersTable);
         loadItems();
-    }
-
-    if (error) {
-        return (
-            <View>
-                <Text>Migration error: {error.message}</Text>
-            </View>
-        );
-    }
-    if (!success) {
-        return (
-            <View>
-                <Text>Migration is in progress...</Text>
-            </View>
-        );
     }
 
     return (
