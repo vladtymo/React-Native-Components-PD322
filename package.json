@@ -29,6 +29,7 @@
     "@babel/core": "^7.25.2",
     "@types/react": "~18.3.12",
     "drizzle-kit": "^0.30.5",
+    "expo-module-scripts": "^4.0.4",
     "typescript": "^5.3.3"
   },
   "private": true
