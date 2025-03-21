@@ -23,6 +23,13 @@ export const menuSlice = createSlice({
         setTitle: (state, action: PayloadAction<string | null>) => {
             state.title = action.payload
         },
+        plus: (state) => {
+            state.nitifications += 1;
+        },
+        minus: (state) => {
+            if (state.nitifications <= 0) return;
+            state.nitifications -= 1;
+        }
         // logout: (state) => {
         //     state.email = null;
         //     state.isAuth = false;
@@ -34,7 +41,7 @@ export const menuSlice = createSlice({
     }
 })
 
-export const { setTitle } = menuSlice.actions
+export const { setTitle, plus, minus } = menuSlice.actions
 export const { selectTitle, selectNotifications } = menuSlice.selectors
 
 export default menuSlice.reducer

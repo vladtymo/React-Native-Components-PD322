@@ -8,7 +8,7 @@ import { useSQLiteContext } from 'expo-sqlite';
 
 import * as schema from '../../store/schema';
 import { useDispatch } from 'react-redux';
-import { setTitle } from '../slices/menuSlice';
+import { minus, plus, setTitle } from '../slices/menuSlice';
 
 const Home = () => {
     // const { success, error } = useMigrations(db, migrations);
@@ -53,6 +53,16 @@ const Home = () => {
                 title='Add New Item'
                 onPress={addItemHandle}
             />
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 50 }}>
+                <Button
+                    title='-'
+                    onPress={() => dispatch(minus())}
+                />
+                <Button
+                    title='+'
+                    onPress={() => dispatch(plus())}
+                />
+            </View>
             <Button
                 title='Clear'
                 onPress={clearHandle}
@@ -61,7 +71,7 @@ const Home = () => {
                 data={items}
                 renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
             ></FlatList>
-        </View>
+        </View >
     )
 }
 

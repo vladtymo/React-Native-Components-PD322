@@ -21,7 +21,8 @@ export default function TabLayout() {
                 name="index"
                 options={{
                     title: title || "Home",
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
+                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+                    tabBarBadge: notifications === 0 ? undefined : notifications
                 }} />
             <Tabs.Screen
                 name="forms"
