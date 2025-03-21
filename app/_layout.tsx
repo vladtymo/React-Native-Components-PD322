@@ -5,6 +5,8 @@ import { SQLiteProvider, openDatabaseSync } from 'expo-sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import migrations from '../drizzle/migrations';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 export const DATABASE_NAME = 'tasks';
 
@@ -34,10 +36,12 @@ export default function RootLayout() {
                 databaseName={DATABASE_NAME}
                 options={{ enableChangeListener: true }}
                 useSuspense>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                    <Stack.Screen name="+not-found" />
-                </Stack>
+                <Provider store={store}>
+                    <Stack>
+                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                        <Stack.Screen name="+not-found" />
+                    </Stack>
+                </Provider>
             </SQLiteProvider>
         </Suspense>
     );

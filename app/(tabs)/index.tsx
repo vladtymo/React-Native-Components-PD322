@@ -7,10 +7,13 @@ import { usersTable } from '../../store/schema';
 import { useSQLiteContext } from 'expo-sqlite';
 
 import * as schema from '../../store/schema';
+import { useDispatch } from 'react-redux';
+import { setTitle } from '../slices/menuSlice';
 
 const Home = () => {
     // const { success, error } = useMigrations(db, migrations);
     const db = drizzle(useSQLiteContext(), { schema });
+    const dispatch = useDispatch();
 
     const [items, setItems] = useState<schema.Task[] | null>(null);
     const [text, setText] = useState<string>('');
@@ -24,8 +27,11 @@ const Home = () => {
     }
 
     const addItemHandle = async () => {
+        if (text.trim() === "") return;
         await db.insert(usersTable).values({ name: text });
         loadItems();
+
+        dispatch(setTitle(text));
     }
 
     const clearHandle = async () => {
