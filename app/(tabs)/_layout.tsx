@@ -36,6 +36,12 @@ export default function TabLayout() {
                     title: 'About',
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
                 }} />
+            <Tabs.Screen
+                name="notifications"
+                options={{
+                    title: 'Notify',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="bell" color={color} />
+                }} />
         </Tabs>
     );
 }
