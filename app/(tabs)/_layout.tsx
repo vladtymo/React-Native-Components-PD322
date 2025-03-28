@@ -42,6 +42,12 @@ export default function TabLayout() {
                     title: 'Notify',
                     tabBarIcon: ({ color }) => <TabBarIcon name="bell" color={color} />
                 }} />
+            <Tabs.Screen
+                name="media"
+                options={{
+                    title: 'Media',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />
+                }} />
         </Tabs>
     );
 }
