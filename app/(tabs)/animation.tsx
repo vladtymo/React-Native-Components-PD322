@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native'
-import Animated, { useSharedValue, Easing, useAnimatedStyle, withDelay, withRepeat, withSpring, withTiming } from 'react-native-reanimated'
+import Animated, { useSharedValue, Easing, useAnimatedStyle, withDelay, withRepeat, withSpring, withTiming, interpolateColor } from 'react-native-reanimated'
 
 const Animation = () => {
     const width = useSharedValue(200);
@@ -25,11 +25,19 @@ const Animation = () => {
     };
 
     const handlePress = () => {
-        rotateDeg.value = withSpring(rotateDeg.value + 60);
+        if (rotateDeg.value <= 180)
+            rotateDeg.value = withTiming(rotateDeg.value + 60);
+        else
+            rotateDeg.value = withTiming(rotateDeg.value - 60);
     };
 
     const animatedStyles = useAnimatedStyle(() => ({
         transform: [{ rotate: `${rotateDeg.value}deg` }],
+        backgroundColor: interpolateColor(
+            width.value,
+            [100, 200, 400],
+            ['violet', 'green', 'red']
+        ),
     }));
 
     return (
