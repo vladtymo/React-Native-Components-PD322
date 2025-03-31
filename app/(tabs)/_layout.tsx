@@ -24,7 +24,7 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
                     tabBarBadge: notifications === 0 ? undefined : notifications
                 }} />
-            <Tabs.Screen
+            {/* <Tabs.Screen
                 name="forms"
                 options={{
                     title: 'Forms',
@@ -35,7 +35,7 @@ export default function TabLayout() {
                 options={{
                     title: 'About',
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
-                }} />
+                }} /> */}
             <Tabs.Screen
                 name="notifications"
                 options={{
@@ -47,6 +47,12 @@ export default function TabLayout() {
                 options={{
                     title: 'Media',
                     tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />
+                }} />
+            <Tabs.Screen
+                name="animation"
+                options={{
+                    title: 'Animation',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="circle" color={color} />
                 }} />
         </Tabs>
     );
