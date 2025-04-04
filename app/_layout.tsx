@@ -7,6 +7,7 @@ import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import migrations from '../drizzle/migrations';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export const DATABASE_NAME = 'tasks';
 
@@ -37,10 +38,12 @@ export default function RootLayout() {
                 options={{ enableChangeListener: true }}
                 useSuspense>
                 <Provider store={store}>
-                    <Stack>
-                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                        <Stack.Screen name="+not-found" />
-                    </Stack>
+                    <GestureHandlerRootView>
+                        <Stack>
+                            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                            <Stack.Screen name="+not-found" />
+                        </Stack>
+                    </GestureHandlerRootView>
                 </Provider>
             </SQLiteProvider>
         </Suspense>

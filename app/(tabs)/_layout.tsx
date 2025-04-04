@@ -24,19 +24,20 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
                     tabBarBadge: notifications === 0 ? undefined : notifications
                 }} />
+            <Tabs.Screen
+                name="about"
+                options={{
+                    title: 'About',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
+                }} />
             {/* <Tabs.Screen
                 name="forms"
                 options={{
                     title: 'Forms',
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
                 }} />
-            <Tabs.Screen
-                name="about"
-                options={{
-                    title: 'About',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />
-                }} /> */}
-            <Tabs.Screen
+            }
+            {/* <Tabs.Screen
                 name="notifications"
                 options={{
                     title: 'Notify',
@@ -47,12 +48,18 @@ export default function TabLayout() {
                 options={{
                     title: 'Media',
                     tabBarIcon: ({ color }) => <TabBarIcon name="camera" color={color} />
-                }} />
+                }} /> */}
             <Tabs.Screen
                 name="animation"
                 options={{
                     title: 'Animation',
                     tabBarIcon: ({ color }) => <TabBarIcon name="circle" color={color} />
+                }} />
+            <Tabs.Screen
+                name="gestures"
+                options={{
+                    title: 'Ball',
+                    tabBarIcon: ({ color }) => <TabBarIcon name="hand-lizard-o" color={color} />
                 }} />
         </Tabs>
     );
