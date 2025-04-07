@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 import { Suspense } from 'react';
-import { ActivityIndicator, View, Text } from 'react-native';
+import { ActivityIndicator, View, Text, Button } from 'react-native';
 import { SQLiteProvider, openDatabaseSync } from 'expo-sqlite';
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
@@ -8,8 +8,17 @@ import migrations from '../drizzle/migrations';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ErrorBoundary from 'react-native-error-boundary'
 
 export const DATABASE_NAME = 'tasks';
+
+// const CustomFallback = (props: { error: Error, resetError: Function }) => (
+//     <View>
+//       <Text>Something happened!</Text>
+//       <Text>{props.error.toString()}</Text>
+//       <Button onPress={props.resetError} title={'Try again'} />
+//     </View>
+//   )
 
 export default function RootLayout() {
     const expoDb = openDatabaseSync(DATABASE_NAME);

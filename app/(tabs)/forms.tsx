@@ -2,6 +2,7 @@ import { Platform, Image, SafeAreaView, StyleSheet, StatusBar, Text, View, TextI
 import { useState } from 'react';
 import CreateProductForm from '../../components/CreateProductForm';
 import TestModal from '../../components/TestModal';
+import TitleComponent from '../../components/TitleComponent';
 
 export default function Forms() {
 
@@ -26,19 +27,19 @@ export default function Forms() {
             backgroundColor: isDarkMode ? 'black' : 'white'
         }}>
             <SafeAreaView style={styles.safe}>
-                {/* <Text>Open up App.tsx to start working on your app!</Text>
+                <Text>Open up App.tsx to start working on your app!</Text>
                 <Pressable onPress={showAlert}>
-                <Image style={styles.image} source={require('./assets/icon.png')} />
+                    <Image style={styles.image} source={require('../../assets/icon.png')} />
                 </Pressable>
                 <TextInput onChangeText={text => setLen(text.length)}></TextInput>
                 <Text>Lenght: {len}</Text>
                 <TitleComponent />
                 <Pressable onPress={() => alert("Hi!")}>
-                <Text style={styles.btn}>Push Me</Text>
+                    <Text style={styles.btn}>Push Me</Text>
                 </Pressable>
                 <Button
-                title='Open Modal' onPress={() => { setModalVisible(true) }}>
-                </Button> */}
+                    title='Open Modal' onPress={() => { setModalVisible(true) }}>
+                </Button>
                 <Button
                     title='Open Form' onPress={() => { setModalVisible(true) }}>
                 </Button>
