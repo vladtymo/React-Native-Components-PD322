@@ -3,13 +3,12 @@ export function getSumm(a, b) {
         throw new Error("Both arguments must be provided");
     if (typeof a !== "number" || typeof b !== "number")
         throw new TypeError("Both arguments must be numbers");
-    if (b === 0)
-        throw new Error("Second argument cannot be zero");
 
     return a + b;
 }
+
 export function getUser(id) {
-    return { id: id, name: "John Doe" };
+    return { id: id, name: "John Doe", phone: undefined };
 }
 
 export function getNextDay() {

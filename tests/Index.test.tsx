@@ -25,7 +25,7 @@ describe("Lists", () => {
                 },
                 {
                     "id": 2,
-                    "title": "Mens Casual Premium Slim Fit T-Shirts ",
+                    "title": "Mens Casual",
                     "price": 22.3,
                     "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
                     "category": "men's clothing",
@@ -53,7 +53,16 @@ describe("Lists", () => {
     it("renders items correctly", async () => {
         render(<Lists />);
 
-        const elementTitle = 'Fjallraven';
-        expect(await screen.findByText(elementTitle)).toBeTruthy();
+        const elementTitle1 = 'Fjallraven';
+        const elementTitle2 = 'Mens Casual';
+        expect(await screen.findByText(elementTitle1)).toBeTruthy();
+        expect(await screen.findByText(elementTitle2)).toBeTruthy();
+    });
+
+    it("axios.get invokes once", async () => {
+        render(<Lists />);
+        await waitFor(() => {
+            expect(mockedAxios.get).toHaveBeenCalledTimes(1);
+        }, { timeout: 3000 })
     });
 });
