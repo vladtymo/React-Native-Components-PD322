@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Alert, Button, StyleSheet, Text, View } from 'react-native'
 import * as Notifications from 'expo-notifications';
 import { SchedulableTriggerInputTypes } from 'expo-notifications';
@@ -37,11 +37,11 @@ const service = {
                 title: 'Look at that notification',
                 body: "I'm so proud of myself!",
             },
-            // trigger: null, // notify now
-            trigger: {
-                type: SchedulableTriggerInputTypes.DATE,
-                date: new Date(2025, 2, 24, 16, 20)
-            },
+            trigger: null, // notify now
+            // trigger: {
+            //     type: SchedulableTriggerInputTypes.DATE,
+            //     date: new Date(2025, 2, 24, 16, 20)
+            // },
         });
     },
     scheduleNofity() {
@@ -81,7 +81,7 @@ const NotifyExample = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Notifications Example</Text>
-            <Button title='Notify Now!' onPress={service.nofity} />
+            <Button title='Notify Now!' onPress={service.nofity} testID='notifyNowBtn' />
             <Button title='Schedule Notification!' onPress={async () => id = await service.scheduleNofity()} />
             <Button title='Cancel Scheduled Notification!' onPress={() => service.cancel(id)} />
 
